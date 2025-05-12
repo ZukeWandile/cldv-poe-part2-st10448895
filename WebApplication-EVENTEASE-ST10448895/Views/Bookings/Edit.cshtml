@@ -1,0 +1,53 @@
+﻿@model WebApplication_EVENTEASE_ST10448895.Models.Bookings
+
+@{
+    ViewData["Title"] = "Edit Booking";
+}
+
+<h1>Edit Booking</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<!-- Show validation errors -->
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="Booking_ID" />
+
+    <div class="form-group">
+        <label asp-for="Venue_ID" class="control-label"></label>
+        <select asp-for="Venue_ID" class="form-control" asp-items="ViewBag.Venue_ID">
+            <option value="">-- Select Venue --</option>
+        </select>
+        <span asp-validation-for="Venue_ID" class="text-danger"></span> 
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Event_ID" class="control-label"></label>
+        <select asp-for="Event_ID" class="form-control" asp-items="ViewBag.Event_ID">
+            <option value="">-- Select Event --</option>
+        </select>
+        <span asp-validation-for="Event_ID" class="text-danger"></span> 
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Booking_Date" class="control-label"></label>
+        <input asp-for="Booking_Date" class="form-control" />
+        <span asp-validation-for="Booking_Date" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

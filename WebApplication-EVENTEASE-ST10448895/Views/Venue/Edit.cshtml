@@ -1,0 +1,69 @@
+﻿@model WebApplication_EVENTEASE_ST10448895.Models.Venue
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<h1>Edit Venue</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Venue_ID" />
+            <input type="hidden" asp-for="ImageUrl" /> <!-- Hidden field added -->
+
+            <div class="form-group">
+                <label asp-for="Venue_Name" class="control-label"></label>
+                <input asp-for="Venue_Name" class="form-control" />
+                <span asp-validation-for="Venue_Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Locations" class="control-label"></label>
+                <input asp-for="Locations" class="form-control" />
+                <span asp-validation-for="Locations" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Capacity" class="control-label"></label>
+                <input asp-for="Capacity" class="form-control" />
+                <span asp-validation-for="Capacity" class="text-danger"></span>
+            </div>
+
+            @if (!string.IsNullOrEmpty(Model?.ImageUrl))
+            {
+                <div class="form-group">
+                    <label>Current Image:</label><br />
+                    <img src="@Model.ImageUrl" alt="Venue Image" style="max-width: 100%; height: auto; border-radius: 8px;" />
+                </div>
+            }
+
+            <div class="form-group">
+                <label asp-for="ImageFile" class="control-label">Upload New Image (Optional)</label>
+                <input asp-for="ImageFile" class="form-control" type="file" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+                <div class="text-info mt-1">
+                    If no image is uploaded, the current image will be kept.
+                </div>
+            </div>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

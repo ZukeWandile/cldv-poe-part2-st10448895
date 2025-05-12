@@ -1,0 +1,36 @@
+﻿@model WebApplication_EVENTEASE_ST10448895.Models.Bookings
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Booking Details</h1>
+<hr />
+
+<dl class="row">
+    <dt class="col-sm-2">
+        Venue
+    </dt>
+    <dd class="col-sm-10">
+        @Model.Venue?.Venue_Name (@Model.Venue?.Locations)
+    </dd>
+
+    <dt class="col-sm-2">
+        Event
+    </dt>
+    <dd class="col-sm-10">
+        @Model.EventS?.Event_Name (@Model.EventS?.Descriptions)
+    </dd>
+
+    <dt class="col-sm-2">
+        Booking Date
+    </dt>
+    <dd class="col-sm-10">
+        @Model.Booking_Date.ToShortDateString()
+    </dd>
+</dl>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Booking_ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

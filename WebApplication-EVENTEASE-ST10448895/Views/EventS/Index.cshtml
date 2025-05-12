@@ -1,0 +1,67 @@
+﻿@model IEnumerable<WebApplication_EVENTEASE_ST10448895.Models.EventS>
+
+@{
+    ViewData["Title"] = "Events";
+}
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+
+<h1>Events</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Event_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descriptions)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Venue)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Event_Name)
+            </td>
+                <td>
+                    @item.Event_Date.ToString("MMMM dd, yyyy 'at' hh:mm tt")
+                </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Descriptions)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Venue.Locations)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Event_ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Event_ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Event_ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

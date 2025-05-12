@@ -1,0 +1,41 @@
+﻿@model WebApplication_EVENTEASE_ST10448895.Models.Bookings
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete Booking</h1>
+
+<h3>Are you sure you want to delete this booking?</h3>
+<div>
+    <h4>Booking Details</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Venue
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Venue?.Venue_Name (@Model.Venue?.Locations)
+        </dd>
+
+        <dt class="col-sm-2">
+            Event
+        </dt>
+        <dd class="col-sm-10">
+            @Model.EventS?.Event_Name (@Model.EventS?.Descriptions)
+        </dd>
+
+        <dt class="col-sm-2">
+            Booking Date
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Booking_Date.ToShortDateString()
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Booking_ID" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </form>
+</div>
